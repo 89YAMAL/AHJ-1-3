@@ -1,0 +1,25 @@
+body {
+    color: #999;
+}
+
+.field_container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    max-width: 500px;
+}
+
+.field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+
+    background-color: aquamarine;
+}
+
+.goblin {
+    width: 100%;
+}

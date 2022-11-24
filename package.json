@@ -1,0 +1,47 @@
+{
+  "name": "AHJ-1-3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/89YAMAL/AHJ-1-3.git",
+  "author": "89YAMAL <alex-popov1987@yandex.ru>",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server --config webpack.dev.js",
+    "build": "webpack --config webpack.prod.js",
+    "lint": "eslint .",
+    "test": "jest --coverage"
+  },
+  "jest": {
+    "testEnviroment": "jsdom",
+    "moduleNameMapper": {
+      "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/src/mocks/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/src/mocks/styleMock.js"
+    }
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.20.2",
+    "@babel/preset-env": "^7.20.2",
+    "babel-jest": "26.0.1",
+    "babel-loader": "^9.1.0",
+    "core-js": "3",
+    "css-loader": "^6.7.2",
+    "css-minimizer-webpack-plugin": "^4.2.2",
+    "eslint": "8.24.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "html-loader": "^4.2.0",
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "26.0.1",
+    "mini-css-extract-plugin": "^2.7.0",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "terser-webpack-plugin": "^5.3.6",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.0",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-merge": "^5.8.0"
+  },
+  "dependencies": {
+    "core-js": "^3.26.0"
+  }
+}
