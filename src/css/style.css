@@ -1,15 +1,11 @@
-body {
-    color: #999;
-}
-
-.field_container {
+.game-goblin {
     display: flex;
     flex-wrap: wrap;
     margin: auto;
     max-width: 500px;
-}
-
-.field {
+  }
+  
+  .game-goblin div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,8 +14,8 @@ body {
     margin: 10px;
 
     background-color: aquamarine;
-}
-
-.goblin {
-    width: 100%;
-}
+  }
+  
+  .gameover {
+    padding: 20px;
+  }

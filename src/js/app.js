@@ -1,5 +1,7 @@
-import src from '../img/goblin.png';
+import Field from './field';
 import Game from './game';
 
-const newGame = new Game(src, 4);
-newGame.start();
+const field = new Field();
+field.init();
+const game = new Game(field);
+game.init();

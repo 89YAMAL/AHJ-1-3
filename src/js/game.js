@@ -1,52 +1,38 @@
 export default class Game {
-  constructor(img, size) {
-    this.size = size;
-    this.img = img;
+  constructor(field) {
+    this.field = field;
+    this.scores = { vic: 0, loose: 0 };
+
+    this.checkTarget = this.checkTarget.bind(this);
   }
 
-  createContainer() {
-    this.name = 'createContainer';
-    const body = document.querySelector('body');
-    const container = '<section class = "game"><div class = "field_container" id = "fieldContainer"></div></section>';
-    body.insertAdjacentHTML('afterbegin', container);
-  }
-
-  createField() {
-    const fieldContainer = document.getElementById('fieldContainer');
-    const fieldSize = this.size ** 2;
-
-    for (let i = 0; i < fieldSize; i += 1) {
-      const field = `<div class = "field" data-id = "${i}"></div>`;
-      fieldContainer.insertAdjacentHTML('beforeend', field);
-    }
-  }
-
-  createImage() {
-    const image = document.createElement('img');
-    image.src = this.img;
-    image.className = 'goblin';
-    return image;
-  }
-
-  getRandom(max) {
-    this.name = 'getRandom';
-    return Math.floor(Math.random() * max);
-  }
-
-  imageInField(img) {
-    const max = this.size ** 2;
-    const id = this.getRandom(max);
-    const dataId = document.querySelector(`div[data-id = '${id}']`);
-    dataId.append(img);
-  }
-
-  start() {
-    this.createContainer();
-    this.createField();
-    const image = this.createImage();
-
-    setInterval(() => {
-      this.imageInField(image);
+  init() {
+    this.field.parent.addEventListener('click', this.checkTarget);
+    this.field.setActive();
+    this.timerId = setInterval(() => {
+      const gameOver = this.checkScores(false);
+      if (gameOver) return;
+      this.field.state(this.scores, '');
+      this.field.setActive();
     }, 1000);
+  }
+
+  checkScores(clickEvent) {
+    if (this.scores.loose >= 5 || this.scores.vic >= 5) {
+      clearInterval(this.timerId);
+      this.field.parent.removeEventListener('click', this.checkTarget);
+      this.field.state(this.scores, 'Игра окончена');
+      return true;
+    } if (!clickEvent) this.scores.loose += +1;
+    else this.scores.loose -= 1;
+    return false;
+  }
+
+  checkTarget(e) {
+    if (e.target === this.field.img) {
+      this.scores.vic += 1;
+      this.field.deleteImg();
+      this.checkScores(true);
+    }
   }
 }
